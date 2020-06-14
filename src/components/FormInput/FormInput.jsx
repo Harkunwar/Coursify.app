@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './FormInput.scss';
-
+import { StyledInput, StyledLabel, StyledContainer } from './FormInputStyles'
 
 const FormInput = ({ label, ...otherProps }) => (
-  <div className='form-input-div'>
-    <input className='form-input' {...otherProps} />
+  <StyledContainer>
+    <StyledInput {...otherProps} />
     {
       label
-        ? <label className={`${otherProps.value.length ? 'shrink' : ''} form-input-label`} >
-          {label}
-        </label>
+        ? <StyledLabel shrink={otherProps.value.length} >
+            {label}
+          </StyledLabel>
         : null
     }
-  </div>
+  </StyledContainer>
 );
 
 FormInput.propTypes = {
