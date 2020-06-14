@@ -1,7 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import LoadingButton, { STAGE_CLICKED, STAGE_SUCCESS, STAGE_FAIL } from './LoadingButton';
+import LoadingButton from './LoadingButton';
 import { setTimeoutAsync } from '../../utils/utils';
+import PropTypes from 'prop-types';
 
 export default {
   title: 'Loading Button',
@@ -24,18 +25,18 @@ class LoadingButtonTest extends React.Component {
   }
 
   handleClick = async () => {
-    action(STAGE_CLICKED)
+    action('clicked')
     const { valid } = this.props;
     await this.setStateAsync({
-      stage: STAGE_CLICKED,
+      stage: 'clicked',
     });
 
     await setTimeoutAsync(2000);
-    action(valid ? STAGE_SUCCESS : STAGE_FAIL)
+    action(valid ? 'success' : 'fail')
     await this.setStateAsync({
-      stage: valid ? STAGE_SUCCESS : STAGE_FAIL,
+      stage: valid ? 'success' : 'fail',
     });
-    
+
     await setTimeoutAsync(500);
     await this.setStateAsync({
       stage: null,
@@ -48,7 +49,12 @@ class LoadingButtonTest extends React.Component {
 
 }
 
+LoadingButtonTest.propTypes = {
+  name: PropTypes.string.isRequired,
+  valid: PropTypes.bool,
+}
+
 export const ValidButton = () => <LoadingButtonTest valid name={'Valid Button'} />;
 
-export const InvalidButton = () => <LoadingButtonTest name={'Invalid Button'} />;
+export const InvalidButton = () => <LoadingButtonTest  name={'Invalid Button'} />;
 

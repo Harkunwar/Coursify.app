@@ -1,18 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './LoadingButton.scss';
 
-const LoadingButton = (props) => {
+const LoadingButton = props => {
   const { stage, children } = props;
+
   return (
     <button className={stage} {...props} >
-      {stage && stage !== STAGE_CLICKED ? null : children}
+      {stage && stage !== 'clicked' ? null : children}
     </button>
   );
 };
-  
-export const STAGE_CLICKED = 'clicked';
-export const STAGE_SUCCESS = 'success';
-export const STAGE_FAIL = 'fail';
+
+LoadingButton.propTypes = {
+  onClick: PropTypes.func,
+  stage: PropTypes.oneOf(['clicked', 'fail', 'success']),
+}
 
 export default LoadingButton;
