@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import LoginPage from './pages/LoginPage';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <LoginPage />
