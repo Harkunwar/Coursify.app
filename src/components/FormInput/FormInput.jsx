@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledInput, StyledLabel, StyledContainer } from './FormInputStyles'
+import { StyledInput, StyledLabel, StyledContainer } from './FormInput.styles'
 
 const FormInput = ({ label, ...otherProps }) => (
   <StyledContainer>
