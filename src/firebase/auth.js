@@ -4,14 +4,14 @@ import 'firebase/auth';
 
 
 const config = {
-  apiKey: "AIzaSyAzWicm0iFHGwHdMyQvfgN82YalbcJqjLc",
-  authDomain: "languagetransfer-28752.firebaseapp.com",
-  databaseURL: "https://languagetransfer-28752.firebaseio.com",
-  projectId: "languagetransfer-28752",
-  storageBucket: "languagetransfer-28752.appspot.com",
-  messagingSenderId: "918781090345",
-  appId: "1:918781090345:web:197ad5d956bdecf6f11a38",
-  measurementId: "G-BHNT246V1Y"
+  apiKey: "AIzaSyAmzxf2gu_mN9G0NWQ7KfJAdtslI3W8YXI",
+  authDomain: "coursify-6820f.firebaseapp.com",
+  databaseURL: "https://coursify-6820f.firebaseio.com",
+  projectId: "coursify-6820f",
+  storageBucket: "coursify-6820f.appspot.com",
+  messagingSenderId: "778837715805",
+  appId: "1:778837715805:web:59325709ec23bd646c56b4",
+  measurementId: "G-LTXK85MD9K"
 };
 
 firebase.initializeApp(config);
