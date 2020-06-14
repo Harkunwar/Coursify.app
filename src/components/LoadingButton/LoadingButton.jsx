@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 
 import './LoadingButton.scss';
 
-const LoadingButton = props => {
-  const { stage, children } = props;
+const LoadingButton = ({ stage, children, ...otherProps}) => (
+  <button className={stage} {...otherProps} >
+    {stage && stage !== 'clicked' ? null : children}
+  </button>
+);
 
-  return (
-    <button className={stage} {...props} >
-      {stage && stage !== 'clicked' ? null : children}
-    </button>
-  );
-};
 
 LoadingButton.propTypes = {
   onClick: PropTypes.func,

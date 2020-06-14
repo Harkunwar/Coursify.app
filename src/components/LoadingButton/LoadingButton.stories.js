@@ -25,14 +25,14 @@ class LoadingButtonTest extends React.Component {
   }
 
   handleClick = async () => {
-    action('clicked')
+    action('clicked')();
     const { valid } = this.props;
     await this.setStateAsync({
       stage: 'clicked',
     });
 
     await setTimeoutAsync(2000);
-    action(valid ? 'success' : 'fail')
+    action(valid ? 'success' : 'fail')();
     await this.setStateAsync({
       stage: valid ? 'success' : 'fail',
     });
