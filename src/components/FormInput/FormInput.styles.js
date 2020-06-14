@@ -7,7 +7,7 @@ export const ShrinkMixin = css`
 `;
 
 export const StyledLabel = styled.label`
-  color: $sub-color;
+  color: gray;
   font-size: 16px;
   font-weight: normal;
   position: absolute;
