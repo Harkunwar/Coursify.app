@@ -4,6 +4,8 @@ import LoadingButton from './LoadingButton';
 import { setTimeoutAsync } from '../../utils/utils';
 import PropTypes from 'prop-types';
 
+import { signInWithGoogle } from '../../firebase/auth'
+
 export default {
   title: 'Loading Button',
   component: LoadingButton,
@@ -31,11 +33,18 @@ class LoadingButtonTest extends React.Component {
       stage: 'clicked',
     });
 
-    await setTimeoutAsync(2000);
+    try {
+      let result = await signInWithGoogle();
+      console.log(result);
+      await this.setStateAsync({
+        stage: 'success'
+      });
+    } catch(error) {
+      await this.setStateAsync({
+        stage: 'fail'
+      });
+    }
     action(valid ? 'success' : 'fail')();
-    await this.setStateAsync({
-      stage: valid ? 'success' : 'fail',
-    });
 
     await setTimeoutAsync(500);
     await this.setStateAsync({
