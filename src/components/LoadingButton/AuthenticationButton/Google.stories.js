@@ -1,8 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import LoadingButton from './LoadingButton';
-import { setTimeoutAsync } from '../../utils/utils';
+import LoadingButton from '../LoadingButton';
+import { setTimeoutAsync } from '../../../utils/utils';
 import PropTypes from 'prop-types';
+
+import { signInWithGoogle, signInWithFacebook } from '../../../firebase/auth'
 
 export default {
   title: 'Loading Button',
@@ -26,17 +28,28 @@ class LoadingButtonTest extends React.Component {
 
   handleClick = async () => {
     action('clicked')();
-    const { valid } = this.props;
     await this.setStateAsync({
       stage: 'clicked',
     });
-
-    await setTimeoutAsync(2000);
-    action(valid ? 'success' : 'fail')();
-    await this.setStateAsync({
-      stage: valid ? 'success' : 'fail',
-    });
-
+  
+    try {
+      let result = null;
+      if (this.props.type === 'Google') {
+        result = await signInWithGoogle();
+      } else if (this.props.type === 'Facebook') {
+        result = await signInWithFacebook();
+      }
+      console.log(result);
+      await this.setStateAsync({
+        stage: 'success'
+      });
+    } catch(error) {
+      console.error(error);
+      await this.setStateAsync({
+        stage: 'fail'
+      });
+    }
+  
     await setTimeoutAsync(500);
     await this.setStateAsync({
       stage: null,
@@ -54,7 +67,7 @@ LoadingButtonTest.propTypes = {
   valid: PropTypes.bool,
 }
 
-export const ValidButton = () => <LoadingButtonTest valid name={'Valid Button'} />;
+export const GoogleButton = () => <LoadingButtonTest name={'Sign in with Google'} type={'Google'} />;
 
-export const InvalidButton = () => <LoadingButtonTest  name={'Invalid Button'} />;
+export const FacebookButton = () => <LoadingButtonTest name={'Sign in with Facebook'} type={'Facebook'} />;
 
